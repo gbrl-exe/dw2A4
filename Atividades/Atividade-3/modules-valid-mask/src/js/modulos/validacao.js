@@ -20,7 +20,7 @@ export default class Pessoa {
         }
 
         // Validação da data de nascimento
-        if(!this.validaNascimento(this.nascimento)){
+        if(!this.validacaoNascimento(this.nascimento)){
             erros.push('dt_nasc')
         }
 
@@ -29,7 +29,7 @@ export default class Pessoa {
             erros.push('email')
         }
 
-        // VALIDAÇÃO TELEFONE
+        //Validação do telefone
         if(this.telefone.replace(/[^\d]+/g,'').length > 11 || this.telefone.replace(/[^\d]+/g,'').length < 10){
             erros.push('fone')
         }
@@ -68,7 +68,7 @@ export default class Pessoa {
         return true;   
     }
 
-    validaNascimento(data){
+    validacaoNascimento(data){
         if(data.length != 10){
             return false
         }
