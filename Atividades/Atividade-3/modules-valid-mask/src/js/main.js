@@ -1,47 +1,31 @@
-const masks = {
-  cpf(value) {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{2})\d+?$/, '$1')
-  },
+import Mask from './modulos/mascara.js'
+import Pessoa from './modulos/validacao.js'
 
-  date(value) {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '$1/$2')
-      .replace(/(\d{2})(\d)/, '$1/$2')
-      .replace(/(\d{4})\d+?$/, '$1')
-     
-  },
+document.querySelectorAll('input').forEach((input) => {
+    const field = input.dataset.js
+    var value = new Mask('');
 
-  fone(value) {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{4})(\d)/, '$1-$2')
-      .replace(/(\d{4})-(\d)(\d{4})/, '$1$2-$3')
-      .replace(/(-\d{4})\d+?$/, '$1')
-  },
+    if(field != undefined){
+        input.addEventListener('input', (e) => {
+            value.setValue(e.target.value)
+            e.target.value = value[field]()
+        }, false)
+    }
+})
 
-  cep(value) {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{5})(\d)/, '$1-$2')
-      .replace(/(-\d{3})\d+?$/, '$1')
-  }
-}
-
-document.querySelectorAll('input').forEach($input => {
-  const field = $input.dataset.js
-
-  $input.addEventListener(
-    'input',
-    e => {
-      e.target.value = masks[field](e.target.value)
-    },
-    false
-  )
+document.getElementById('button').addEventListener('click', (e) => {
+    var values = document.querySelectorAll('input')
+    const pessoa = new Pessoa(values[0].value, values[1].value, values[2].value, values[3].value, values[4].value, values[5].value)
+    
+    if(pessoa.nome == undefined){
+        for(var i = 0; i < pessoa.length;i++){
+            document.getElementById(pessoa[i]).classList.add('errorInput')
+            
+            document.getElementById(pessoa[i]).addEventListener('blur', (e) => {
+                e.target.classList.remove('errorInput')
+            }, false)
+        }
+    }else{
+        document.getElementsByClassName('header')[0].innerHTML = "<p>Os dados foram gravados com sucesso.</p>"
+    }
 })
