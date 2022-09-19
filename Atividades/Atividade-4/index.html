@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid Dados</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <h2>Digite o CEP para buscar os dados da Covid-19 no Estado</h2>
+    <form class="form">
+        <label>CEP</label>
+        <input type="text" class="cep" id="CEP" data-js="cep"><br><br>
+    </form>
+
+    <div>
+        <table class="Tabela">
+            <tr>
+                <td>UF</td>
+                <td>Casos</td>
+                <td> Suspeitas</td>
+                <td>Mortes</td>
+            </tr>
+            <tr>
+                <td class="dados" id="UF"></td>
+                <td class="dados" id="Casos"></td>
+                <td class="dados" id="Suspeitas"></td>
+                <td class="dados" id="Mortes"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+table.Tabela {
+    border-collapse: collapse; /* CSS2 */
+
+}
+ 
+table.Tabela td {
+    border: 1px solid black;
+    width: 80px;
+    text-align: center;
+}
+ 
