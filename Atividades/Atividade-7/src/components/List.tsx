@@ -1,41 +1,38 @@
-import { useState } from "react";
+import { useState } from "react"
 
 type ListProps = {
-    initialItems: string[]
+  initialItems: string[]
 }
 
-function List({initialItems}: ListProps) {
-  const[newItem, setNewItem] = useState('');
+function List({ initialItems }: ListProps) {
+  const [newItem, setNewItem] = useState('');
   const [list, setList] = useState(initialItems);
 
   function addToList() {
     setTimeout(() => {
       setList(state => [...state, newItem]);
-    },500)
+    }, 500)
   }
 
-  function removeFromList(item: string) {
+  function removeFromList(itemRemovido: string) {
     setTimeout(() => {
-      setList(state => state.filter(item => item != item));
-    },500)
+      setList(state => state.filter(item => item != itemRemovido))
+    }, 500);
   }
 
   return (
     <>
-    <input 
-      type="text" 
-      onChange={e => setNewItem(e.target.value)}
-      placeholder="Novo item"
-    />
-    <button onClick={addToList}>Adicionar</button>
-
-    <ul>
-      {list.map(item => (<li key={item}>
-        {item}
-        <button onClick={() => removeFromList(item)}>Remover</button>
-      </li>))}
-    </ul>
-  </>
+      <input placeholder="Novo item" value={newItem} onChange={e => setNewItem(e.target.value)} />
+      <button onClick={addToList}>Adicionar</button>
+      <ul>
+        {list.map(item => (
+          <li key={item}>
+            {item}
+            <button onClick={() => removeFromList(item)}>Remover</button>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
