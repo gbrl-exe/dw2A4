@@ -24,7 +24,7 @@ export const feedbackTypes = {
         
     },
     AVALIATION: {
-        title:'Avaliation',
+        title:'Avaliação',
         image: {
             source: starImageUrl,
             alt: 'Imagem de uma lâmpada'
